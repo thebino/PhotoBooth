@@ -8,4 +8,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'nativePhotobooth'
+rootProject.name = 'PhotoBooth'
