@@ -6,11 +6,6 @@ on:
       - master
     paths-ignore:
       - '**.md'
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
 
 jobs:
   test:
