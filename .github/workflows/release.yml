@@ -10,9 +10,11 @@ jobs:
     name: Create Release
     runs-on: macOS-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout repository
+        uses: actions/checkout@v1
 
-      - uses: actions/cache@v1
+      - name: Restore cache
+        uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
@@ -44,4 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: "build/bin/mac/releaseExecutable/**"
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./build/bin/mac/releaseExecutable/PhotoBooth.kexe
+          asset_name: PhotoBooth-mac-${{ github.ref }}.kexe
+          asset_content_type: application/zip
