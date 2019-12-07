@@ -1,0 +1,14 @@
+package = libui
+headers = ui.h
+---
+
+// https://github.com/andlabs/libui/pull/392
+struct ktAreaHandler {
+    uiAreaHandler ui;
+    void *ref;
+};
+
+struct ktTableHandler {
+    uiTableModelHandler ui;
+    void *ref;
+};
