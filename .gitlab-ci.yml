@@ -1,0 +1,25 @@
+stages:
+  - Build
+  - Tests
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .gradle/caches/
+    - .gradle/wrapper/
+    - .android/build-cache
+
+setup:
+  stage: Build
+  script:
+    - ./gradlew build
+    - bundle install
+
+unit_tests:
+  stage: Tests
+  script:
+    - ./gradlew allTests
